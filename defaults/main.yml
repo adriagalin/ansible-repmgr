@@ -7,6 +7,7 @@ repmgr_packages:
   - rsync
   - ssh
 
+repmgr_hosts: groups[all]
 repmgr_conf: /etc/repmgr.conf
 repmgr_user: postgres
 repmgr_group: postgres
@@ -85,7 +86,7 @@ repmgr_cron: []
 #   weekday: *
 #   user: "postgres"
 #   month: *
-#   weekday: *  
+#   weekday: *
 #   disabled: false
 
 # Need cron task or not
