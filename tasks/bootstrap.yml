@@ -95,7 +95,7 @@
       --host {{ repmgr_master_node }} \
       --dbname {{ repmgr_db_name }} \
       --user {{ repmgr_db_user }} \
-      --data-dir {{ repmgr_pg_data_dir }} \
+      --pgdata {{ repmgr_pg_data_dir }} \
       --verbose \
       standby clone
   become_user: "{{ repmgr_user }}"
@@ -118,7 +118,7 @@
     while true; do
       RETRY=$(($RETRY + 1))
       COUNT=$(psql -qAt -U {{ repmgr_db_user }} \
-        -c 'SELECT COUNT(1) FROM repmgr_{{ repmgr_cluster_group }}.repl_nodes WHERE id={{ repmgr_node_id }}' \
+        -c 'SELECT COUNT(1) FROM repmgr.nodes WHERE node_id={{ repmgr_node_id }}' \
         {{ repmgr_db_name }})
       test $COUNT -ge 1 && exit 0
       test $RETRY -ge 15 && exit 1
