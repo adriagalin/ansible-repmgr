@@ -14,6 +14,7 @@ repmgr_group: postgres
 repmgr_cluster_group: all
 repmgr_bootstrap: off
 repmgr_pg_data_dir: /var/lib/postgresql/9.4/main
+repmgr_postgresql_data_directory: "{{ repmgr_pg_data_dir }}"
 repmgr_func_path: /usr/share/postgresql/9.4/contrib/repmgr_funcs.sql
 
 repmgr_cluster_name: test
@@ -71,7 +72,7 @@ repmgr_priority: 100
 repmgr_promote_command: repmgr standby promote -f {{ repmgr_conf }}
 repmgr_follow_command: repmgr standby follow -f {{ repmgr_conf }} -W
 repmgr_monitor_interval_secs: 2
-repmgr_retry_promote_interval_secs: 300
+repmgr_primary_notification_timeout: 300
 
 # Cron variables:
 
